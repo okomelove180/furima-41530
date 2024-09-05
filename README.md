@@ -1,24 +1,63 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users Table
 
-Things you may want to cover:
+|Column|Type|Options|
+|:----|:----|:----|
+|nickname|string|null: false, unique: true|
+|email|string|null: false, unique: true|
+|encrypted_password|string|null: false|
+|last_name|string|null: false|
+|first_name|string|null: false|
+|last_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+|birthday|date|null: false|
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :purchase_records
 
-* System dependencies
+## items Table
+|Column|Type|Options|
+|:----|:----|:----|
+|user|references|null: false, foreign_key: true|
+|product_image|string|null: false|
+|product_name|string|null: false|
+|product_description|text|null: false|
+|category|string|null: false|
+|product_condition|string|null: false|
+|shipping_cost|integer|null: false|
+|region_of_origin|string|null: false|
+|delivery_time|string|null: false|
+|price|integer|null: false|
 
-* Configuration
 
-* Database creation
+### Association
+- belongs_to :users
+- has_many :purchase_records
 
-* Database initialization
+## purchase_records Table
+|Column|Type|Options|
+|:----|:----|:----|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :users
+- belongs_to :items
+- has_one :shipping-addresses
 
-* Deployment instructions
 
-* ...
+## purchase_records Table
+|Column|Type|Options|
+|:----|:----|:----|
+|post_code|string|null: false|
+|prefecture|string|null: false|
+|municipality|string|null: false|
+|street_address|string|null: false|
+|building_name|string|null: false|
+|telephone_number|string|null: false|
+
+### Association
+- belongs_to :purchase_records
