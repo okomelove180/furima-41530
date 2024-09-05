@@ -33,7 +33,7 @@
 
 ### Association
 - belongs_to :user
-- has_one :purchase_records
+- has_one :purchase_record
 
 ## purchase_records Table
 |Column|Type|Options|
