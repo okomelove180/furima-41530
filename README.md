@@ -48,7 +48,7 @@
 - has_one :shipping_address
 
 
-## purchase_records Table
+## shipping_addresses Table
 |Column|Type|Options|
 |:----|:----|:----|
 |purchase_record|references|null: false, foreign_key: true|
