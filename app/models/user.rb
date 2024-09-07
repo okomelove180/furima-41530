@@ -15,5 +15,6 @@ class User < ApplicationRecord
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
   validates :password,
-            format: { with: VALID_PASSWORD_REGEX, message: 'is invalid (must contain both alphabet and numbers)' }
+            format: { with: VALID_PASSWORD_REGEX,
+                      message: 'is invalid (must contain both alphabet and numbers / must be half-width alphanumeric)' }
 end

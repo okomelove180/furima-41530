@@ -48,13 +48,19 @@ RSpec.describe User, type: :model do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is invalid (must contain both alphabet and numbers)')
+        expect(@user.errors.full_messages).to include('Password is invalid (must contain both alphabet and numbers / must be half-width alphanumeric)')
       end
       it 'passwordが半角数字のみだと登録できない' do
         @user.password = '111111'
         @user.password_confirmation = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is invalid (must contain both alphabet and numbers)')
+        expect(@user.errors.full_messages).to include('Password is invalid (must contain both alphabet and numbers / must be half-width alphanumeric)')
+      end
+      it 'passwordに全角が含まれていると登録できない' do
+        @user.password = '１１１１１１a'
+        @user.password_confirmation = '１１１１１１a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is invalid (must contain both alphabet and numbers / must be half-width alphanumeric)')
       end
       it 'passwordが存在してもpassword_confirmationが空だと登録できない' do
         @user.password_confirmation = ''
