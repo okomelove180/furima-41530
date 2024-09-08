@@ -10,4 +10,6 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :delivery_time_id, presence: true
   validates :price, presence: true, numericality: { only_integer: true, greater_than: 299, less_than: 10_000_000 }
+
+  has_one_attached :image
 end
