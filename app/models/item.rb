@@ -14,12 +14,13 @@ class Item < ApplicationRecord
   validates :delivery_time_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :price, presence: true,
                     numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range (¥300~¥9,999,999)' }
+  validates :image, presence: true
 
   # ActiveHash Associations
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category_genre
-  belongs_to :product_condition_genre
-  belongs_to :shipping_cost_genre
-  belongs_to :prefecture_genre
-  belongs_to :delivery_time_genre
+  belongs_to :category, class_name: 'CategoryGenre'
+  belongs_to :product_condition, class_name: 'ProductConditionGenre'
+  belongs_to :shipping_cost, class_name: 'ShippingCostGenre'
+  belongs_to :prefecture, class_name: 'PrefectureGenre'
+  belongs_to :delivery_time, class_name: 'DeliveryTimeGenre'
 end
