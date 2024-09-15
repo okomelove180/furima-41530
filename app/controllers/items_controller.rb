@@ -56,8 +56,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
-  def go_to_root_path
-    redirect_to root_path
-  end
 end
