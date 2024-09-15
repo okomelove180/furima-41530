@@ -20,11 +20,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
     redirect_to root_path if current_user.id != @item.user_id || @item.purchase_record.present?
   end
 
