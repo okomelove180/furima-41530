@@ -8,6 +8,7 @@ class PurchaseRecordShippingAddress
     validates :item_id
     validates :municipality
     validates :street_address
+    validates :token
   end
 
   validates :post_code, presence: { message: "can't be blank" },
