@@ -3,16 +3,14 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    if current_user.id == Item.find(params[:item_id]).user_id || Item.find(params[:item_id]).purchase_record.present?
+    if current_user.id == set_item.user_id || set_item.purchase_record.present?
       redirect_to root_path
     else
       @purchase_form = PurchaseRecordShippingAddress.new
-      set_item
     end
   end
 
   def create
-    set_item
     @purchase_form = PurchaseRecordShippingAddress.new(purchase_record_shipping_address_params)
     if @purchase_form.valid?
       pay_item
@@ -23,8 +21,6 @@ class OrdersController < ApplicationController
     end
   end
 
-
-  
   private
 
   def purchase_record_shipping_address_params
@@ -42,6 +38,6 @@ class OrdersController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
-  
+end
