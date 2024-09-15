@@ -54,6 +54,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'gimei'
+  gem "mysql2", "~> 0.5"
 end
 
 group :development do
@@ -62,7 +63,7 @@ group :development do
   gem 'rubocop', require: false
 
   # Use mysql as the database for Active Record
-  gem "mysql2", "~> 0.5"
+
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -78,6 +79,10 @@ group :test do
   gem "webdrivers"
 end
 
+group :production do
+  gem 'pg'
+end
+
 
 gem 'active_hash'
 gem 'devise'
@@ -86,5 +91,4 @@ gem 'mini_magick'
 gem 'image_processing'
 gem 'payjp'
 gem 'gon'
-gem 'pg'
 gem 'connection_pool'
